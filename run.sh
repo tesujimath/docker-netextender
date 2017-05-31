@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# for v in 'PROXY_USER' 'VPN_USER' 'VPN_DOMAIN' 'VPN_SERVER' 'VPNRDPIP'; do
-for v in 'VPN_USER' 'VPN_DOMAIN' 'VPN_SERVER' 'VPN_RDPIP'; do
+# for v in 'PROXY_USER' 'VPN_USER' 'VPN_PASS' 'VPN_DOMAIN' 'VPN_SERVER' 'VPN_RDPIP'; do
+for v in 'VPN_USER' 'VPN_PASS'  'VPN_DOMAIN' 'VPN_SERVER' 'VPN_RDPIP'; do
     if test -z $(eval "echo \$$v"); then
         echo "Missing env variable $v" >&2
         exit 1
@@ -27,4 +27,14 @@ delayed_start()
 # htpasswd -c /etc/squid3/passwords "$PROXY_USER"
 # echo >&2
 delayed_start &
-netExtender -u "$VPN_USER" -d "$VPN_DOMAIN" "$VPN_SERVER"
+
+# netExtender -u "$VPN_USER" -d "$VPN_DOMAIN" -p "$VPN_PASS" "$VPN_SERVER"
+/usr/bin/netextender
+
+#while [ true ]; do
+#  echo "------------ VPN Starts ------------"
+#  # /usr/bin/netextender
+#  netextender -u "$VPN_USER" -p "$VPN_PASS" -s "$VPN_SERVER"
+#  echo "------------ VPN exited ------------"
+#  sleep 10
+#done

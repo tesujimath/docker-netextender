@@ -19,6 +19,14 @@ LABEL maintainer "Jakub Vanak"
 
 RUN \
   apt-get update && \
-  apt-get install -q -y iptables net-tools iproute ipppd iptables ssh
+  apt-get install -q -y expect iptables net-tools iproute ipppd ssh
+
+ADD run.sh /
+RUN chmod u+x /run.sh
+
+COPY netextender /usr/bin/netextender
+RUN chmod u+x /usr/bin/netextender
+
+WORKDIR /
 
 CMD ["/run.sh"]
