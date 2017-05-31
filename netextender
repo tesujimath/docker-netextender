@@ -1,8 +1,12 @@
 #!/usr/bin/expect -f
 
-spawn "netExtender" -u $env(VPN_USER) -p $env(VPN_PASS) -d $env(VPN_DOMAIN) -s $env(VPN_SERVER)
+spawn "netExtender" -u $env(VPN_USER) -d $env(VPN_DOMAIN) -s $env(VPN_SERVER)
 
 set timeout 5
+
+expect "User Access Authentication"
+expect "Password:"
+send -- "$env(VPN_PASS)\n"
 
 expect -exact "Do you want to proceed? (Y:Yes, N:No, V:View Certificate)" {
   send -- "Y\n"
