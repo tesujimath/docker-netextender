@@ -14,14 +14,14 @@ RUN \
   apt-get update && \
   apt-get install -q -y build-essential \
                         software-properties-common \
-                        apache2-utils byobu curl git htop man ppp squid3 unzip vim w3m wget \
-                        ipppd iptables iputils-ping iproute net-tools ssh
+                        apache2-utils byobu curl git htop man ppp unzip vim w3m wget \
+                        expect iptables iputils-ping iproute net-tools ssh
 
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
   apt-get update && \
-  apt-get install -y oracle-java8-installer && \
+  apt-get install -q -y oracle-java8-installer && \
   rm -rf /var/cache/oracle-jdk8-installer 
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle 
