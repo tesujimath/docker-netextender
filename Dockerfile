@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 LABEL maintainer "Jakub Vanak"
 
 # Usage:
@@ -10,12 +10,14 @@ LABEL maintainer "Jakub Vanak"
 #     -e VPN_DOMAIN=domain -e VPN_SERVER=server \
 #     -p 3128:3128 -v /lib/modules:/lib/modules netextender
 
+RUN export DEBIAN_FRONTEND=noninteractive
+
 RUN \
   apt-get update && \
-  apt-get install -q -y build-essential \
+  DEBIAN_FRONTEND=noninteractive apt-get install -q -y build-essential \
                         software-properties-common \
                         apache2-utils byobu curl git htop man ppp unzip vim w3m wget \
-                        expect iptables iputils-ping iproute net-tools ssh
+                        expect ipppd iptables iputils-ping iproute net-tools ssh
 
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
