@@ -38,6 +38,9 @@ RUN cd /build && \
 ADD run.sh / 
 RUN chmod u+x /run.sh 
 
+COPY netextender /usr/bin/netextender
+RUN chmod u+x /usr/bin/netextender
+
 WORKDIR /
 
 CMD ["/run.sh"]
