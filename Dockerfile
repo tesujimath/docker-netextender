@@ -43,6 +43,9 @@ RUN chmod u+x /run.sh
 COPY netextender /usr/bin/netextender
 RUN chmod u+x /usr/bin/netextender
 
+COPY gateway-fix.sh /gateway-fix.sh
+RUN chmod u+x /gateway-fix.sh
+
 WORKDIR /
 
 CMD ["/run.sh"]
