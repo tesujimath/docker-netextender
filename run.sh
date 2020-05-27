@@ -20,4 +20,4 @@ done
 # on the VPN device. In case there will be any the script deletes it.
 /gateway-fix.sh &
 
-/usr/bin/netextender
+/vpn/netextender

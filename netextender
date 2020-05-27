@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
 
-spawn "netExtender" --username $env(VPN_USER) --password $env(VPN_PASS) --domain $env(VPN_DOMAIN) --ppp-sync $env(VPN_SERVER)
+spawn "netExtender" --username $env(VPN_USER) --password $env(VPN_PASS) --domain $env(VPN_DOMAIN) --ppp-sync --auto-reconnect $env(VPN_SERVER)
 
 set timeout 5
 
