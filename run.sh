@@ -20,11 +20,4 @@ done
 # on the VPN device. In case there will be any the script deletes it.
 /gateway-fix.sh &
 
-# Start VPN (in a loop).
-while [ true ]; do
-  echo "------------ VPN Starts ------------"
-  /usr/bin/netextender
-  echo "------------ VPN exited ------------"
-  sleep 10
-done
-
+/usr/bin/netextender
