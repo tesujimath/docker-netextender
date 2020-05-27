@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     true \
     && apt-get update \
+    && apt-get upgrade --yes \
     && apt-get install --quiet --yes \
         # ---Installation stuff \
         default-jre \
