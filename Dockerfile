@@ -21,7 +21,7 @@ RUN \
         iputils-ping \
         iproute2 \
         net-tools \
-    && true
+    && apt-get clean
 
 COPY run.sh /vpn/
 RUN chmod u+x /vpn/run.sh

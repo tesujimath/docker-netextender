@@ -35,11 +35,13 @@ docker run \
     --label container-type=vpnclient \
     --label vpn-type=netextender \
     --label customer=customer-XYZ \
-    --privileged -p 51234:3380 \
+    --cap-add=NET_ADMIN \
+    --device=/dev/ppp \
+    -p 51234:3380 \
     -e "VPN_SERVER=vpn-gateway-ip:port" \
     -e "VPN_USER=[user-id]" \
     -e "VPN_PASS=[pwd]" \
     -e "VPN_DOMAIN=domain-or-address" \
     -e "VPN_RDPIP=192.168.1.123" \
-    jakubv/docker-netextender
+    calidae/netextender
 ```
