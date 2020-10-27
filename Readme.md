@@ -1,6 +1,8 @@
 # NetExtender (SonicWALL) for Docker
 
-Connect to a SonicWALL VPNs through docker NetExtender container. 
+Connect to a SonicWALL VPNs through docker NetExtender container.
+
+*This fork differs from upstream by supporting VPN_EXTRA_IP and VPN_EXTRA_PORT, for additional port forwaring*
 
 ## Usage
 
