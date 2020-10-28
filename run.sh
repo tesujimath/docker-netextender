@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for v in 'VPN_USER' 'VPN_PASS' 'VPN_DOMAIN' 'VPN_SERVER' 'VPN_RDPIP' 'VPN_EXTRA_IP' 'VPN_EXTRA_PORT'; do
+for v in 'VPN_USER' 'VPN_PASS' 'VPN_DOMAIN' 'VPN_SERVER' 'VPN_IPFORWARD'; do
     if test -z $(eval "echo \$$v"); then
         echo "Missing env variable $v" >&2
         exit 1
@@ -8,8 +8,17 @@ for v in 'VPN_USER' 'VPN_PASS' 'VPN_DOMAIN' 'VPN_SERVER' 'VPN_RDPIP' 'VPN_EXTRA_
 done
 
 iptables -F
-iptables -t nat -A PREROUTING -p tcp --dport 3380 -j DNAT --to-destination  ${VPN_RDPIP}:3389
-iptables -t nat -A PREROUTING -p tcp --dport ${VPN_EXTRA_PORT} -j DNAT --to-destination  ${VPN_EXTRA_IP}:${VPN_EXTRA_PORT}
+
+IFS=,
+set $VPN_IPFORWARD
+IFS=" "
+for ipforward in $*; do
+    IFS=:
+    set $ipforward
+    IFS=" "
+    iptables -t nat -A PREROUTING -p tcp --dport $1 -j DNAT --to-destination $2:$3
+done
+
 iptables -t nat -A POSTROUTING -j MASQUERADE
 
 # Setup masquerade, to allow using the container as a gateway

@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL maintainer "Calidae FTW"
+LABEL maintainer "simon.guest@tesujimath.org"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
